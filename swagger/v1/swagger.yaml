@@ -1,0 +1,318 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/api/v1/categories":
+    get:
+      summary: List categories
+      tags:
+      - Categories
+      responses:
+        '200':
+          description: categories found
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    name:
+                      type: string
+                    description:
+                      type: string
+                      nullable: true
+                    active:
+                      type: boolean
+                    created_at:
+                      type: string
+                      format: date-time
+                    updated_at:
+                      type: string
+                      format: date-time
+                  required:
+                  - id
+                  - name
+                  - active
+    post:
+      summary: Create category
+      tags:
+      - Categories
+      parameters: []
+      responses:
+        '201':
+          description: category created
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                category:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    description:
+                      type: string
+                    active:
+                      type: boolean
+                  required:
+                  - name
+  "/api/v1/categories/{id}":
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+    get:
+      summary: Get category
+      tags:
+      - Categories
+      responses:
+        '200':
+          description: category found
+        '404':
+          description: not found
+    patch:
+      summary: Update category
+      tags:
+      - Categories
+      parameters: []
+      responses:
+        '200':
+          description: updated
+        '422':
+          description: invalid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                category:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    description:
+                      type: string
+                    active:
+                      type: boolean
+    delete:
+      summary: Delete category
+      tags:
+      - Categories
+      responses:
+        '204':
+          description: no content
+  "/api/v1/reports/monthly_expenses":
+    get:
+      summary: Monthly expenses
+      tags:
+      - Reports
+      parameters:
+      - name: year
+        in: query
+        required: true
+        schema:
+          type: integer
+      - name: month
+        in: query
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: monthly expenses
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    category_id:
+                      type: integer
+                    category_name:
+                      type: string
+                    total:
+                      type: string
+                  required:
+                  - category_id
+                  - category_name
+                  - total
+        '400':
+          description: bad request
+  "/api/v1/reports/daily_expenses":
+    get:
+      summary: Daily expenses
+      tags:
+      - Reports
+      parameters:
+      - name: year
+        in: query
+        required: true
+        schema:
+          type: integer
+      - name: month
+        in: query
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: daily expenses
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    date:
+                      type: string
+                    total:
+                      type: string
+                  required:
+                  - date
+                  - total
+        '400':
+          description: bad request
+  "/api/v1/transactions":
+    get:
+      summary: List transactions
+      tags:
+      - Transactions
+      responses:
+        '200':
+          description: transactions found
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    category_id:
+                      type: integer
+                    amount:
+                      type: string
+                    kind:
+                      type: integer
+                    description:
+                      type: string
+                      nullable: true
+                    occurred_at:
+                      type: string
+                      format: date
+                  required:
+                  - id
+                  - category_id
+                  - amount
+                  - kind
+                  - occurred_at
+    post:
+      summary: Create transaction
+      tags:
+      - Transactions
+      parameters: []
+      responses:
+        '201':
+          description: transaction created
+        '422':
+          description: invalid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                transaction:
+                  type: object
+                  properties:
+                    category_id:
+                      type: integer
+                    amount:
+                      type: number
+                      format: float
+                    kind:
+                      type: string
+                    description:
+                      type: string
+                    occurred_at:
+                      type: string
+                      format: date
+                  required:
+                  - category_id
+                  - amount
+                  - kind
+                  - occurred_at
+  "/api/v1/transactions/{id}":
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+    get:
+      summary: Get transaction
+      tags:
+      - Transactions
+      responses:
+        '200':
+          description: transaction found
+        '404':
+          description: not found
+    patch:
+      summary: Update transaction
+      tags:
+      - Transactions
+      parameters: []
+      responses:
+        '200':
+          description: updated
+        '422':
+          description: invalid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                transaction:
+                  type: object
+                  properties:
+                    category_id:
+                      type: integer
+                    amount:
+                      type: number
+                      format: float
+                    kind:
+                      type: string
+                    description:
+                      type: string
+                    occurred_at:
+                      type: string
+                      format: date
+    delete:
+      summary: Delete transaction
+      tags:
+      - Transactions
+      responses:
+        '204':
+          description: no content
+servers:
+- url: http://{defaultHost}
+  variables:
+    defaultHost:
+      default: 127.0.0.1:3000/

@@ -1,0 +1,9 @@
+one:
+  name: "Groceries"
+  description: "Food and groceries"
+  active: true
+
+two:
+  name: "Utilities"
+  description: "Monthly bills"
+  active: true

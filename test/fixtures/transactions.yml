@@ -1,0 +1,27 @@
+one:
+  category: one
+  amount: 12.34
+  kind: 0
+  description: "Coffee"
+  occurred_at: 2026-02-05
+
+two:
+  category: two
+  amount: 5.66
+  kind: 0
+  description: "Bus"
+  occurred_at: 2026-02-05
+
+three:
+  category: one
+  amount: 20.00
+  kind: 0
+  description: "Weekly shopping"
+  occurred_at: 2026-02-10
+
+march_one:
+  category: one
+  amount: 100.00
+  kind: 0
+  description: "March expense"
+  occurred_at: 2026-03-10
