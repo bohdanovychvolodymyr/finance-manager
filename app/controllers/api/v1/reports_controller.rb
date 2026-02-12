@@ -11,11 +11,11 @@ module Api
 
         sums = Transaction.where(kind: Transaction::KINDS[:expense], occurred_at: start_date..end_date)
                       .joins(:category)
-                      .group('categories.id', 'categories.name')
+                      .group("categories.id", "categories.name")
                       .sum(:amount)
 
         result = sums.map do |(id, name), total|
-          { category_id: id, category_name: name, total: sprintf('%.2f', total.to_f) }
+          { category_id: id, category_name: name, total: sprintf("%.2f", total.to_f) }
         end
 
         render json: result
@@ -35,7 +35,7 @@ module Api
                       .sum(:amount)
 
         result = sums.map do |date, total|
-          { date: date.to_s, total: sprintf('%.2f', total.to_f) }
+          { date: date.to_s, total: sprintf("%.2f", total.to_f) }
         end
 
         render json: result

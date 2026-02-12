@@ -38,7 +38,7 @@ RSpec.describe 'API V1 Categories', swagger_doc: 'v1/swagger.yaml', type: :reque
               description: { type: :string },
               active: { type: :boolean }
             },
-            required: ['name']
+            required: [ 'name' ]
           }
         }
       }

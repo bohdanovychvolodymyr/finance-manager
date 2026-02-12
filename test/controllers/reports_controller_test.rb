@@ -14,13 +14,13 @@ class ReportsControllerTest < ActionDispatch::IntegrationTest
 
     assert_equal 2, data.length
 
-    groceries = data.find { |d| d['category_name'] == @category1.name }
+    groceries = data.find { |d| d["category_name"] == @category1.name }
     assert groceries
-    assert_equal "32.34", groceries['total']
+    assert_equal "32.34", groceries["total"]
 
-    utilities = data.find { |d| d['category_name'] == @category2.name }
+    utilities = data.find { |d| d["category_name"] == @category2.name }
     assert utilities
-    assert_equal "5.66", utilities['total']
+    assert_equal "5.66", utilities["total"]
   end
 
   test "daily expenses for a month" do
@@ -29,14 +29,14 @@ class ReportsControllerTest < ActionDispatch::IntegrationTest
 
     data = JSON.parse(response.body)
 
-    day1 = data.find { |d| d['date'] == '2026-02-05' }
-    day2 = data.find { |d| d['date'] == '2026-02-10' }
+    day1 = data.find { |d| d["date"] == "2026-02-05" }
+    day2 = data.find { |d| d["date"] == "2026-02-10" }
 
     assert day1
-    assert_in_delta 18.0, day1['total'].to_f, 0.001
+    assert_in_delta 18.0, day1["total"].to_f, 0.001
 
     assert day2
-    assert_in_delta 20.0, day2['total'].to_f, 0.001
+    assert_in_delta 20.0, day2["total"].to_f, 0.001
   end
 
   test "bad params return 400" do

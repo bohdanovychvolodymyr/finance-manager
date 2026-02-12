@@ -14,33 +14,33 @@ def find_category(name)
 end
 
 # February 2026 expenses
-Transaction.find_or_create_by!(description: 'Coffee', occurred_at: Date.new(2026,2,5)) do |t|
+Transaction.find_or_create_by!(description: 'Coffee', occurred_at: Date.new(2026, 2, 5)) do |t|
   t.category = find_category('Food')
   t.amount = 12.34
   t.kind = :expense
 end
 
-Transaction.find_or_create_by!(description: 'Bus', occurred_at: Date.new(2026,2,5)) do |t|
+Transaction.find_or_create_by!(description: 'Bus', occurred_at: Date.new(2026, 2, 5)) do |t|
   t.category = find_category('Transport')
   t.amount = 5.66
   t.kind = :expense
 end
 
-Transaction.find_or_create_by!(description: 'Weekly shopping', occurred_at: Date.new(2026,2,10)) do |t|
+Transaction.find_or_create_by!(description: 'Weekly shopping', occurred_at: Date.new(2026, 2, 10)) do |t|
   t.category = find_category('Shopping')
   t.amount = 20.00
   t.kind = :expense
 end
 
 # A March expense so date filtering can be observed
-Transaction.find_or_create_by!(description: 'March expense', occurred_at: Date.new(2026,3,10)) do |t|
+Transaction.find_or_create_by!(description: 'March expense', occurred_at: Date.new(2026, 3, 10)) do |t|
   t.category = find_category('Food')
   t.amount = 100.00
   t.kind = :expense
 end
 
 # An income record (should not be included in expense reports)
-Transaction.find_or_create_by!(description: 'Salary', occurred_at: Date.new(2026,2,28)) do |t|
+Transaction.find_or_create_by!(description: 'Salary', occurred_at: Date.new(2026, 2, 28)) do |t|
   t.category = find_category('Income')
   t.amount = 1000.00
   t.kind = :income

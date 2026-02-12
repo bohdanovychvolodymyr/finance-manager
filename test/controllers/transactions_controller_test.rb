@@ -17,7 +17,7 @@ class TransactionsControllerTest < ActionDispatch::IntegrationTest
     get api_v1_transaction_url(@transaction, format: :json)
     assert_response :success
     data = JSON.parse(response.body)
-    assert_equal @transaction.amount.to_s, data["amount" ]
+    assert_equal @transaction.amount.to_s, data["amount"]
   end
 
   test "should create transaction" do

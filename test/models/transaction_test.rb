@@ -13,8 +13,8 @@ class TransactionTest < ActiveSupport::TestCase
   end
 
   test "enum kinds are defined" do
-    assert Transaction.kinds.key?('expense')
-    assert Transaction.kinds.key?('income')
-    assert Transaction.kinds.key?('transfer')
+    assert Transaction.kinds.key?("expense")
+    assert Transaction.kinds.key?("income")
+    assert Transaction.kinds.key?("transfer")
   end
 end

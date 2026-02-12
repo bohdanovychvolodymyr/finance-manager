@@ -41,7 +41,7 @@ RSpec.describe 'API V1 Transactions', swagger_doc: 'v1/swagger.yaml', type: :req
               description: { type: :string },
               occurred_at: { type: :string, format: 'date' }
             },
-            required: ['category_id', 'amount', 'kind', 'occurred_at']
+            required: [ 'category_id', 'amount', 'kind', 'occurred_at' ]
           }
         }
       }
